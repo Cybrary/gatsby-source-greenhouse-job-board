@@ -5,7 +5,7 @@ const types = {
   department: 'Department',
 };
 
-const createNodeHelpers = require('gatsby-node-helpers').createNodeHelpers;
+const createNodeHelpers = require('gatsby-node-helpers').default;
 
 const { createNodeFactory, generateNodeId } = createNodeHelpers({
   typePrefix: typePrefix,
