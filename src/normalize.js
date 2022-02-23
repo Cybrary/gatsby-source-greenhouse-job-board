@@ -4,17 +4,13 @@ const types = {
   office: 'Office',
   department: 'Department',
 };
-const upperFirst = require('lodash/fp').upperFirst;
+
 const createNodeHelpers = require('gatsby-node-helpers').createNodeHelpers;
 
-const { createNodeFactory } = createNodeHelpers({
+const { createNodeFactory, generateNodeId } = createNodeHelpers({
   typePrefix: typePrefix,
   conflictFieldPrefix: 'gh_',
 });
-
-const generateNodeId = (type, id) => {
-  return `${typePrefix}__${upperFirst(type)}__${id}`;
-};
 
 const JobNode = createNodeFactory(types.job);
 const OfficeNode = createNodeFactory(types.office);
