@@ -19,14 +19,18 @@ exports.sourceNodes = async (gatsby, pluginOptions) => {
   const { createNode } = actions
   const { boardToken } = pluginOptions
 
-  let offices, departments, jobs
+  let offices, jobs, departments;
   let nodes
 
   try {
     // Fetch data from the Greenhouse APIs
-    offices = await fetchOffices(boardToken)
-    departments = await fetchDepartments(boardToken)
-    jobs = await fetchJobs(boardToken)
+    const officesResponse = await fetchOffices(boardToken);
+    const departmentsResponse = await fetchDepartments(boardToken);
+    const jobsResponse = await fetchJobs(boardToken);
+
+    offices = officesResponse && officesResponse.length ?  officesResponse : [];
+    departments = departmentsResponse && departmentsResponse.length ?  departmentsResponse : [];
+    jobs = jobsResponse && jobsResponse.length ? jobsResponse : [];
 
   } catch (error) {
     log(`
